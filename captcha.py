@@ -4,6 +4,22 @@ from PIL import Image,ImageDraw,ImageFont,ImageFilter
 from django.conf import settings
 
 def create_validate_with_conf():
+'''
+	 @生成验证码图片
+	 @configItem size: 图片的大小，格式（宽，高），默认为(120, 30)
+	 @configItem img_type: 图片保存的格式，可选的为GIF，JPEG，TIFF，PNG
+	 @configItem mode: 图片模式，例如RGB
+	 @configItem bg_color: 背景颜色，默认为白色
+	 @configItem font_size: 验证码字体大小
+	 @configItem fontType: 验证码字体
+	 @configItem tipFontType: 提示文本字体
+	 @configItem draw_lines: 是否绘制干扰线
+	 @configItem line_range: 干扰线的条数范围，格式为tuple，例如(1, 2)，只有draw_lines为True时有效
+	 @configItem draw_points: 是否绘制干扰点
+	 @configItem point_chance: 干扰点出现的概率，大小范围
+	 @return: [0]: PIL Image实例
+	 @return: [1]: 验证码图片中的字符串
+'''
 	size = settings.CAPTCHA_CONF['size']
 	img_type = settings.CAPTCHA_CONF['img_type']
 	mode = settings.CAPTCHA_CONF['mode']
@@ -15,36 +31,6 @@ def create_validate_with_conf():
 	n_line = settings.CAPTCHA_CONF['line_range']
 	draw_points = settings.CAPTCHA_CONF['draw_points']
 	point_chance = settings.CAPTCHA_CONF['point_chance']
-
-# def create_validate_code(size=(300, 100),
-						 # img_type="PNG",
-						 # mode="RGB",
-						 # bg_color=(255, 255, 255),
-						 # font_size=24,
-						 # font_type=fontType,
-						 # TipFontType=tipFontType,
-						 # length=3,
-						 # draw_lines=True,
-						 # n_line=(1, 3),
-						 # draw_points=True,
-						 # point_chance = 2):
-#	 '''
-#	 @todo: 生成验证码图片
-#	 @param size: 图片的大小，格式（宽，高），默认为(120, 30)
-#	 @param chars: 允许的字符集合，格式字符串
-#	 @param img_type: 图片保存的格式，默认为GIF，可选的为GIF，JPEG，TIFF，PNG
-#	 @param mode: 图片模式，默认为RGB
-#	 @param bg_color: 背景颜色，默认为白色
-#	 @param font_size: 验证码字体大小
-#	 @param font_type: 验证码字体，默认为 ae_AlArabiya.ttf
-#	 @param length: 验证码字符个数
-#	 @param draw_lines: 是否划干扰线
-#	 @param n_lines: 干扰线的条数范围，格式元组，默认为(1, 2)，只有draw_lines为True时有效
-#	 @param draw_points: 是否画干扰点
-#	 @param point_chance: 干扰点出现的概率，大小范围[0, 100]
-#	 @return: [0]: PIL Image实例
-#	 @return: [1]: 验证码图片中的字符串
-#	 '''
 	random.seed(hash(time.time()))
 	width, height = size	# 宽， 高
 	img = Image.new(mode, size, bg_color)	# 创建图形
