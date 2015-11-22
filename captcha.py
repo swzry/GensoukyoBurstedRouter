@@ -130,7 +130,6 @@ def create_points(draw, point_chance, width, height):
 
 def create_strs(draw, font_type, font_size, width, height, fg_color, strs, ofs):
 	'''绘制验证码字符'''
-	'''生成给定长度的字符串，返回列表格式'''
 	#c_chars = random.sample(chars, length)
 	# c_chars=random.sample(rjs, length)
 	# strs = ' %s ' % ' '.join(c_chars) # 每个字符前后以空格隔开
@@ -141,7 +140,6 @@ def create_strs(draw, font_type, font_size, width, height, fg_color, strs, ofs):
 
 def create_tip_strs(draw, font_type, font_size, width, height, fg_color, strs, ofs):
 	'''绘制验证码字符'''
-	'''生成给定长度的字符串，返回列表格式'''
 	font = ImageFont.truetype(font_type, font_size)
 	font_width, font_height = font.getsize(strs)
 	beginx , beginy = (width - font_width) / 8, (height - font_height) / ofs
